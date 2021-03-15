@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.squareup.seismic.ShakeDetector;
 
 public class MainActivity extends AppCompatActivity implements ShakeDetector.Listener {
@@ -45,13 +46,13 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
                 try {
                     if (!flashFlag) {
                         cameraManager.setTorchMode("0", true);
-                        actionImageView.setImageResource(R.drawable.flashlight_turn);
+                        Glide.with(this).load(R.drawable.flashlight_turn).into(actionImageView);
                         Ll.setBackgroundColor(Color.WHITE);
                         textView.setTextColor(Color.BLACK);
                         flashFlag = true;
                     } else {
                         cameraManager.setTorchMode("0", false);
-                        actionImageView.setImageResource(R.drawable.flashlight);
+                        Glide.with(this).load(R.drawable.flashlight).into(actionImageView);
                         Ll.setBackgroundColor(Color.BLACK);
                         textView.setTextColor(Color.WHITE);
                         flashFlag = false;
