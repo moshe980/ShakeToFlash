@@ -14,7 +14,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.RequestConfiguration;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.squareup.seismic.ShakeDetector;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements ShakeDetector.Listener {
     CameraManager cameraManager;
@@ -24,11 +33,26 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
     boolean flashFlag = false;
     LinearLayout Ll;
     TextView textView;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MobileAds.initialize(this, "ca-app-pub-3289952769891594~9413588846");
+        mAdView = findViewById(R.id.adView);
+
+
+        AdView adView = new AdView(this);
+
+        adView.setAdSize(AdSize.BANNER);
+
+        adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
         Ll = (LinearLayout) findViewById(R.id.Ll);
         textView = findViewById(R.id.text);
         actionImageView = findViewById(R.id.action_image);
